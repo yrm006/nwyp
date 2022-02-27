@@ -11,6 +11,10 @@ This is a software for matching of items. If you have something enouth, please r
 ```
 require: deno, sqlite3
 
+## sample server
+
+[http://203.138.198.184:2022](http://203.138.198.184:2022)
+
 ## license
 
 OfP (only for peace)
