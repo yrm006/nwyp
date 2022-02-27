@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>nwyp - requested list</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <script type="module">
+    fetch("requested"+location.search)
+    .then(async function(res){
+        new Vue({
+            el: '#elmItems',
+            data: {
+                items: await res.json(),
+            },
+        });
+    })
+    .catch(function(e){
+        alert(e);
+    });
+
+    elmPhotoC.onchange = async function(){
+        elmPhoto.src = URL.createObjectURL(this.files[0]);
+    };
+    </script>
+</head>
+
+<body>
+    <h2>📢 REQUESTED</h2>
+
+    <div  id="elmItems">
+        <table v-if="items.length">
+            <tr>
+                <th>id</th>
+                <th>title</th>
+                <th>photo</th>
+                <th>where</th>
+                <th>contact</th>
+            </tr>
+            <tr v-for="item of items">
+                <td>{{item.id}}</td>
+                <td>{{item.sTitle}}</td>
+                <td><img :src="`req-photo/${item.id}-${item.sPhoto}`" style="height:3em;"></td>
+                <td>{{item.sWhere}}</td>
+                <td>{{item.sContact}}</td>
+            </tr>
+        </table>
+
+        <div v-else>
+            <p>no match found</p>
+        </div>
+    </div>
+
+    <form action="register" method="POST" enctype="multipart/form-data">
+        <h2>✏️ REGISTER</h2>
+        <dl>
+            <dt>title:</dt>
+            <dd>
+                <input type="text" name="title">
+            </dd>
+            <dt>photo:</dt>
+            <dd>
+                <img id="elmPhoto" style="height:3em;"><br>
+                <input id="elmPhotoC" type="file" name="photo">
+            </dd>
+            <dt>where:</dt>
+            <dd>
+                <input type="text" name="where">
+            </dd>
+            <dt>contact:</dt>
+            <dd>
+                <input type="text" name="contact">
+            </dd>
+            <dt>&nbsp;</dt>
+            <dd>
+                <button>register</button>
+            </dd>
+        </dl>
+    </form>
+
+    <div>
+        [<a href="./"> back </a>]
+    </div>
+</body>
+
+</html>
