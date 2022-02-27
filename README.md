@@ -2,7 +2,7 @@
 
 ## what?
 
-This is a web application for matching of items. Please register something for someone if you have enough. Please request something to someone if you need something.
+This is a software for matching of items. If you have something enouth, please register it for someone. If you need something, request it to this system.
 
 ## how?
 
